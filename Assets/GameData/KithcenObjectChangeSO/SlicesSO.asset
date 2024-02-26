@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8844948b551a284d9d3f3d9c6c25796, type: 3}
+  m_Name: SlicesSO
+  m_EditorClassIdentifier: 
+  kitchenObjectSlicesDatas:
+  - slicesObjectType: 0
+    inputObject: {fileID: 7145562659635437894, guid: b187878d82b2b60478da278a0fdffceb, type: 3}
+    outputObject: {fileID: 6225549560293977075, guid: c9062a053672aea438f980540a6705be, type: 3}
+    cuttingProgressMax: 5
+  - slicesObjectType: 1
+    inputObject: {fileID: 4631101989172797118, guid: c881e3c1a04a86146ac515165280836c, type: 3}
+    outputObject: {fileID: 6225549560293977075, guid: 81797c7f396081d409b61590db39397e, type: 3}
+    cuttingProgressMax: 5
+  - slicesObjectType: 2
+    inputObject: {fileID: 6225549560293977075, guid: d63679a2b6c2b954eb84c0777715336e, type: 3}
+    outputObject: {fileID: 6225549560293977075, guid: d8fdf1d5ecf5e8344acf05d8a79ac774, type: 3}
+    cuttingProgressMax: 5

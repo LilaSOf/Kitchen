@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc56b97b9a4240b4381b604b4180504e, type: 3}
+  m_Name: MEGEburger
+  m_EditorClassIdentifier: 
+  kichenObjectDataList:
+  - {fileID: 11400000, guid: d044133662542d041ac1ff7e5546cbf3, type: 2}
+  - {fileID: 11400000, guid: eb7031627b4e60b4dbf1a2e6124eb730, type: 2}
+  - {fileID: 11400000, guid: 7854efcdbb7a27c43a65003722b2995e, type: 2}
+  - {fileID: 11400000, guid: 6d7505b5bee46734384d936f04c5cb2a, type: 2}
+  - {fileID: 11400000, guid: 71e3419a65333364b95d6d8189e6c265, type: 2}
+  name: MEGEburger

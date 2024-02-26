@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa28d89bcec6a2248813e94c5fd45905, type: 3}
+  m_Name: CookedSO
+  m_EditorClassIdentifier: 
+  kitchenObjectCookedDatas:
+  - inputObject: {fileID: 8449465712938876639, guid: fd3f0a03d1668eb4f83285ce37b48663, type: 3}
+    outputObject: {fileID: 873995816679054908, guid: d5036603b749d6c4b84d750344a36e78, type: 3}
+    cookedOrBurned: 3
+    cookType: 0
+  - inputObject: {fileID: 873995816679054908, guid: d5036603b749d6c4b84d750344a36e78, type: 3}
+    outputObject: {fileID: 2103951513669261572, guid: 65333b750c1a73847913ad7d6db6da16, type: 3}
+    cookedOrBurned: 3
+    cookType: 1
