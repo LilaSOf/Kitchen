@@ -10,10 +10,11 @@ public class MusicManager : Singleton<MusicManager>
     protected override void Awake()
     {
         base.Awake();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+       
     }
 
     // Update is called once per frame

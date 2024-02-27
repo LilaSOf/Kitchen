@@ -43,6 +43,11 @@ public enum CookedChangeState
     Raw, Cooked
 }
 
+public enum KeyAttribute
+{
+    WalkUp, WalkDown,WalkLeft, WalkRight,Interact,InteractAlt,Pause
+}
+
 /// <summary>
 /// 通过继承该接口获得拿取厨房物品的属性
 /// </summary>

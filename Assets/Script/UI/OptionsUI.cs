@@ -30,7 +30,7 @@ public class OptionsUI : Singleton<OptionsUI>
     }
     private void Start()
     {
-       // UpdateTextShow();
+        UpdateTextShow();
     }
     // Start is called before the first frame update
 

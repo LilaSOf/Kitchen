@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 public class GameInputManager : Singleton<GameInputManager>
 {
     // Start is called before the first frame update
+    private const string PLAYER_KEY_SAVE = "PlayerKey";
+
     private GameControl gameControl;//获得键盘控制组件
 
     [Header("获取的玩家移动方向")]
@@ -29,7 +31,13 @@ public class GameInputManager : Singleton<GameInputManager>
     protected override void Awake()
     {
         base.Awake();
+
         gameControl = new GameControl();//实例化对象
+
+        if(PlayerPrefs.HasKey(PLAYER_KEY_SAVE))
+        {
+            gameControl.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_KEY_SAVE));
+        }
         gameControl.Player.Move.Enable();//需要使用的控制内容需要先Enable
         gameControl.Player.Interact.Enable();//开启交互事件
         //注册交互事件
@@ -80,5 +88,78 @@ public class GameInputManager : Singleton<GameInputManager>
         gameControl.Player.Pause.performed -= OnPauseGame_Action;
 
         gameControl.Dispose();
+    }
+
+
+    /// <summary>
+    /// 根据当前按键类型获得对应文本
+    /// </summary>
+    /// <param name="key">按键属性</param>
+    /// <returns></returns>
+    public string GetKeyName(KeyAttribute key)
+    {
+        string keyString = key switch
+        {
+            KeyAttribute.WalkUp => gameControl.Player.Move.bindings[1].ToDisplayString(),
+            KeyAttribute.WalkDown => gameControl.Player.Move.bindings[2].ToDisplayString(),
+            KeyAttribute.WalkLeft => gameControl.Player.Move.bindings[3].ToDisplayString(),
+            KeyAttribute.WalkRight => gameControl.Player.Move.bindings[4].ToDisplayString(),
+            KeyAttribute.Interact => gameControl.Player.Interact.bindings[0].ToDisplayString(),
+            KeyAttribute.InteractAlt => gameControl.Player.Interact_Cutting.bindings[0].ToDisplayString(),
+            KeyAttribute.Pause => gameControl.Player.Pause.bindings[0].ToDisplayString(),
+            _ => ""
+        };
+        return keyString;
+    }
+
+    /// <summary>
+    /// 设置新的按键
+    /// </summary>
+    public void SetNewKey(KeyAttribute key,Action complete)
+    {
+        gameControl.Player.Disable();
+        InputAction interact;
+        int bindingIndex;
+        switch (key)
+        {
+            case KeyAttribute.WalkUp:
+                interact = gameControl.Player.Move;
+                bindingIndex = 1;
+                break;
+            case KeyAttribute.WalkDown:
+                interact = gameControl.Player.Move;
+                bindingIndex = 2;
+                break;
+            case KeyAttribute.WalkLeft:
+                interact = gameControl.Player.Move;
+                bindingIndex = 3;
+                break;
+            case KeyAttribute.WalkRight:
+                interact = gameControl.Player.Move;
+                bindingIndex = 4;
+                break;
+            case KeyAttribute.Interact:
+                interact = gameControl.Player.Interact;
+                bindingIndex = 0;
+                break;
+            case KeyAttribute.Pause:
+                interact = gameControl.Player.Pause;
+                bindingIndex = 0;
+                break;
+            case KeyAttribute.InteractAlt:
+                interact = gameControl.Player.Interact;
+                bindingIndex = 0;
+                break;
+            default: interact = gameControl.Player.Interact;
+                bindingIndex = 0;
+                break;
+        }
+        interact.PerformInteractiveRebinding(bindingIndex).OnComplete(callback =>
+        {
+            complete?.Invoke();
+           PlayerPrefs.SetString(PLAYER_KEY_SAVE,gameControl.SaveBindingOverridesAsJson());
+            gameControl.Player.Enable();
+        }).Start();
+
     }
 }
