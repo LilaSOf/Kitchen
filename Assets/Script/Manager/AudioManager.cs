@@ -16,7 +16,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         DeliveryManage.Instance.DeliverySuccess += OnDeliverySuccessEvnet;
         DeliveryManage.Instance.DeliveryFailure += OnDeliveryFailureEvnet;
-        Player.Instance.PlayerPickUpItemEvent += OnPlayerPickUpItemEvent;
+       // Player.Instance.PlayerPickUpItemEvent += OnPlayerPickUpItemEvent;
         CuttingCounter.OnAnyCut += OnAnyCutEvent;
         BaseCounter.KitchenObjectDropEvent += OnKitchenObjectDropEvent;
         TrashCounter.TranshedEvent += OnTranshedEvent;
@@ -42,7 +42,7 @@ public class AudioManager : Singleton<AudioManager>
 
     private void OnPlayerPickUpItemEvent(object sender, System.EventArgs e)
     {
-        PlayAudio(audioData.objectPick, Player.Instance.transform.position);
+        //PlayAudio(audioData.objectPick, Player.Instance.transform.position);
     }
 
     private void OnDeliverySuccessEvnet(object sender, System.EventArgs e)
@@ -63,7 +63,7 @@ public class AudioManager : Singleton<AudioManager>
     /// <param name="volume"></param>
     private void PlayAudio(AudioClip[] audioClipArray, Vector3 pos, float volume = 1)
     {
-        AudioSource.PlayClipAtPoint(audioClipArray[Random.Range(0,audioClipArray.Length)], pos, volume);
+        AudioSource.PlayClipAtPoint(audioClipArray[Random.Range(0,audioClipArray.Length)], pos, volume * volumeParameter);
     }
 
 
@@ -81,6 +81,11 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayFootStopSource(Vector3 pos,float volume)
     {
         AudioSource.PlayClipAtPoint(audioData.footSpeed[Random.Range(0, audioData.footSpeed.Length)], pos, volume * volumeParameter);
+    }
+
+    public void PlayStoveWaringSource(Vector3 pos)
+    {
+        PlayAudio(audioData.warning, pos);
     }
     /// <summary>
     /// 设置音效音乐的音量

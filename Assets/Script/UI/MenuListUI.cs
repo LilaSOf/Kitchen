@@ -20,20 +20,23 @@ public class MenuListUI : MonoBehaviour
     }
     private void OnMenuSpawnEvnet(object sender, DeliveryManage.MenuSpawData e)
     {
-        //Ìí¼Ó²Ëµ¥
-        if(e.removeIndex <0)
+        if (GameManager.Instance.IsGamePlaying())
         {
-           // Debug.Log("Add");
-            MenuListTemplete temp = Instantiate(menuListTemplete, transform);
-            temp.gameObject.SetActive(true);
-            temp.UpdateUIShow(e.menuRecipe);
-            menuListTempleteList.Add(temp);
-        }
-        else//ÒÆ³ý²Ëµ¥ 
-        {
-            //Debug.Log("Remove");
-            Destroy(menuListTempleteList[e.removeIndex].gameObject);
-            menuListTempleteList.RemoveAt(e.removeIndex);
+            //Ìí¼Ó²Ëµ¥
+            if (e.removeIndex < 0)
+            {
+                // Debug.Log("Add");
+                MenuListTemplete temp = Instantiate(menuListTemplete, transform);
+                temp.gameObject.SetActive(true);
+                temp.UpdateUIShow(e.menuRecipe);
+                menuListTempleteList.Add(temp);
+            }
+            else//ÒÆ³ý²Ëµ¥ 
+            {
+                //Debug.Log("Remove");
+                Destroy(menuListTempleteList[e.removeIndex].gameObject);
+                menuListTempleteList.RemoveAt(e.removeIndex);
+            }
         }
     }
 

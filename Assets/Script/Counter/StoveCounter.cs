@@ -153,4 +153,13 @@ public class StoveCounter : BaseCounter,IHasProgress
             }; 
         }
     }
+
+    /// <summary>
+    /// 是否以及烹饪完毕（即将烧焦状态）
+    /// </summary>
+    /// <returns></returns>
+    public bool IsFiredWarning()
+    {
+        return state == State.Frided;
+    }
 }

@@ -7,9 +7,9 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     private enum GameState
     {
-        GamePause,GameStartCount,GamePlaying,GameOver
+        GamePause,GameStartCount,GamePlaying,GameOver,GameWaitToStart
     }
-    [SerializeField]private GameState state = GameState.GameStartCount;//游戏状态
+    [SerializeField]private GameState state = GameState.GameWaitToStart;//游戏状态
 
     [Header("倒数开始")]
     private float countToStart = 3;
@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
     public event EventHandler GameOverEvent;
     //游戏暂停事件
     public event EventHandler GamePauseEvent;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -34,12 +35,17 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         GameInputManager.Instance.PauseGame_Action += OnPauseGame_Action;
+        GameInputManager.Instance.InteractAction += OnInteractAction;
     }
 
+  
     private void Update()
     {
         switch (state)
         {
+            case GameState.GameWaitToStart:
+
+                break;
             case GameState.GamePause:
                 
                 break;
@@ -76,6 +82,13 @@ public class GameManager : Singleton<GameManager>
             case GameState.GameOver:
                 GameOverEvent?.Invoke(this, EventArgs.Empty);
                 break;
+        }
+    }
+    private void OnInteractAction(object sender, EventArgs e)
+    {
+        if(state == GameState.GameWaitToStart)
+        {
+            state = GameState.GameStartCount;
         }
     }
 

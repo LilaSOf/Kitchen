@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 5121008952076132007}
   - component: {fileID: 2871785591285310673}
   m_Layer: 5
-  m_Name: CuttingCounterCanvas
+  m_Name: ProgressCounterCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c67ffa3f1bdbd241bf5ac1db3a6a16b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cuttingCounter: {fileID: 2148650310802936405}
   image: {fileID: 2120849272636709800}
   cuttingSlider: {fileID: 8626755850833962684}
 --- !u!114 &2871785591285310673

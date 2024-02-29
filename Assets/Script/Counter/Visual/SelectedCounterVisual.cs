@@ -13,7 +13,7 @@ public class SelectedCounterVisual : MonoBehaviour
     {
         selectedCounter = GetComponentInParent<BaseCounter>();
 
-        Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
+        //Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
     }
 
     private void Player_OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)

@@ -15,9 +15,9 @@ MonoBehaviour:
   kitchenObjectCookedDatas:
   - inputObject: {fileID: 8449465712938876639, guid: fd3f0a03d1668eb4f83285ce37b48663, type: 3}
     outputObject: {fileID: 873995816679054908, guid: d5036603b749d6c4b84d750344a36e78, type: 3}
-    cookedOrBurned: 3
+    cookedOrBurned: 5
     cookType: 0
   - inputObject: {fileID: 873995816679054908, guid: d5036603b749d6c4b84d750344a36e78, type: 3}
     outputObject: {fileID: 2103951513669261572, guid: 65333b750c1a73847913ad7d6db6da16, type: 3}
-    cookedOrBurned: 3
+    cookedOrBurned: 5
     cookType: 1

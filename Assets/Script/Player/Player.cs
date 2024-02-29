@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Player : Singleton<Player>,IKitchenObjectParent
+using Unity.Netcode;
+public class Player : NetworkBehaviour,IKitchenObjectParent
 {
+    //public static Player Instance { get; private set; }
+
     //改变选中的柜台目标
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
@@ -32,9 +34,9 @@ public class Player : Singleton<Player>,IKitchenObjectParent
 
     //控制音效生成的事件
     public event EventHandler PlayerPickUpItemEvent;
-    protected override void Awake()
+    private  void Awake()
     {
-        base.Awake();
+      //  Instance = this;
     }
     private void Start()
     {
@@ -43,13 +45,13 @@ public class Player : Singleton<Player>,IKitchenObjectParent
         GameInputManager.Instance.Interact_CuttingAction += OnInteract_CuttingAction;
     }
 
- 
-
-
-
     // Update is called once per frame
     void Update()
     {
+        if(IsOwner)
+        {
+            return;
+        }
         isWalking = moveDir != Vector3.zero;
         //判断当前交互/选择状态
         HandleInteration();
@@ -64,7 +66,7 @@ public class Player : Singleton<Player>,IKitchenObjectParent
         else
         {
             moveDir = GameInputManager.Instance.GetPlayerMoveDirction();
-        }
+        } 
         //尝试不使用物理系统进行碰撞判定
         HandleMove();
     }

@@ -34,7 +34,7 @@ public class DeliveryManage : Singleton<DeliveryManage>
         public int removeIndex;
     }
 
-    //控制音效生成的事件
+    //控制提交的结果事件
     public event EventHandler DeliverySuccess;
     public event EventHandler DeliveryFailure;
     protected override void Awake()
@@ -104,7 +104,7 @@ public class DeliveryManage : Singleton<DeliveryManage>
                     successRecipe++;
                     return;
                 }
-                Debug.LogError("错误的菜单");
+               
             }
         }
         DeliveryFailure?.Invoke(this, EventArgs.Empty);
