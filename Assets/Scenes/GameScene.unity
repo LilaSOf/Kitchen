@@ -14394,5 +14394,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8334726805306472620, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: SyncScaleX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334726805306472620, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: SyncScaleY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334726805306472620, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: SyncScaleZ
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334726805306472620, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: SyncPositionY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334726805306472620, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: SyncRotAngleX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334726805306472620, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: SyncRotAngleZ
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
