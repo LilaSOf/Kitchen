@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("游戏进行时间")]
     private float gameTimer;
-    private float gameTimerMax = 60;
+    private float gameTimerMax =300;
 
     //倒数开始游戏事件
     public event EventHandler<float> GameCountToStartEvent;

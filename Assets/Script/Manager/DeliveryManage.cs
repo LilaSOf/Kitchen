@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SocialPlatforms;
-
-public class DeliveryManage : Singleton<DeliveryManage>
+using Unity.Netcode;
+public class DeliveryManage :NetworkBehaviour //Singleton<DeliveryManage>
 {
+    public static DeliveryManage Instance { get; private set; }
     [SerializeField] private RecipeSO recipeSO;
 
     [Header("菜单列表")]
@@ -37,12 +38,15 @@ public class DeliveryManage : Singleton<DeliveryManage>
     //控制提交的结果事件
     public event EventHandler DeliverySuccess;
     public event EventHandler DeliveryFailure;
-    protected override void Awake()
+    protected  void Awake()
     {
-        base.Awake();
+        //base.Awake();
+        Instance = this;
     }
     private void Update()
     {
+        if (!IsServer)
+            return;
         spawnTime -= Time.deltaTime;
         if(spawnTime < 0)
         {
@@ -52,10 +56,12 @@ public class DeliveryManage : Singleton<DeliveryManage>
             {
                 //生成数据
                 int rang =UnityEngine.Random.Range(0, recipeSO.menuRecipeSO.Count);
+
+                SpawnNewWaitingRecipeClientRpc(rang);
                // Debug.Log(rang);
-                recipeList.Add(recipeSO.menuRecipeSO[rang]);
+                //recipeList.Add(recipeSO.menuRecipeSO[rang]);
                 //生成UI
-                MenuSpawnEvnet?.Invoke(this,new MenuSpawData { menuRecipe = recipeSO.menuRecipeSO[rang], removeIndex  = -1});
+                //MenuSpawnEvnet?.Invoke(this,new MenuSpawData { menuRecipe = recipeSO.menuRecipeSO[rang], removeIndex  = -1});
             }
         }
     }
@@ -94,22 +100,70 @@ public class DeliveryManage : Singleton<DeliveryManage>
                 if(plateContentsMatchesRecipe)
                 {
                     Debug.Log(i);
-                    //移除数据
+                    /*//移除数据
                     recipeList.RemoveAt(i);
                     //移除UI
                     MenuSpawnEvnet?.Invoke(this, new MenuSpawData { menuRecipe = null, removeIndex = i });
                     //播放成功音效
                     DeliverySuccess?.Invoke(this, EventArgs.Empty);
                     //添加记录交付个数
-                    successRecipe++;
+                    successRecipe++;*/
+                    DeliveryCorrectRecipeServerRpc(i);
                     return;
                 }
                
             }
         }
-        DeliveryFailure?.Invoke(this, EventArgs.Empty);
+        DeliveryFailureServerRpc();
+        //DeliveryFailure?.Invoke(this, EventArgs.Empty);
         Debug.Log(DeliveryFailure.GetInvocationList().Length);
     }
+    [ServerRpc(RequireOwnership = false)]
+    private void DeliveryFailureServerRpc()
+    {
+        DeliveryFailureClientRpc();
+    }
+    [ClientRpc]
+    private void DeliveryFailureClientRpc()
+    {
+        DeliveryFailure?.Invoke(this, EventArgs.Empty);
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void DeliveryCorrectRecipeServerRpc(int i)
+    {
+        DeliveryCorrectRecipeClientRpc(i);
+    }
+
+
+    [ClientRpc]
+    private void DeliveryCorrectRecipeClientRpc(int i)
+    {
+        //移除数据
+        recipeList.RemoveAt(i);
+        //移除UI
+        MenuSpawnEvnet?.Invoke(this, new MenuSpawData { menuRecipe = null, removeIndex = i });
+        //播放成功音效
+        DeliverySuccess?.Invoke(this, EventArgs.Empty);
+        //添加记录交付个数
+        successRecipe++;
+    }
+
+
+    [ClientRpc]
+    /// <summary>
+    /// 同步获得菜单数据信息
+    /// </summary>
+    private void SpawnNewWaitingRecipeClientRpc(int rang)
+    {
+        MenuRecipeSO recipe = recipeSO.menuRecipeSO[rang];
+
+        recipeList.Add(recipe);
+
+        MenuSpawnEvnet?.Invoke(this, new MenuSpawData { menuRecipe = recipeSO.menuRecipeSO[rang], removeIndex = -1 });
+    }
+
     /// <summary>
     /// 获得订单提交数量
     /// </summary>

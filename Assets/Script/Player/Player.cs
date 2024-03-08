@@ -32,6 +32,8 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     [SerializeField]private Transform kitchenHoldPoint;
     [SerializeField]private KitchenObject kitchenObject;
 
+    [Header("判断碰撞的层级")]
+    private LayerMask counterLayerMask;
     //控制音效生成的事件
     public event EventHandler PlayerPickUpItemEvent;
     private  void Awake()
@@ -48,7 +50,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     // Update is called once per frame
     void Update()
     {
-        if(IsOwner)
+        if(!IsOwner)
         {
             return;
         }
@@ -58,17 +60,18 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         //绘制射线
         Debug.DrawRay(transform.position, transform.forward * 2f, Color.blue);
 
-        //获取移动方向
-        if(GameManager.Instance.IsGamePauseOver())
+
+        if (GameManager.Instance.IsGamePauseOver())
         {
             moveDir = Vector3.zero;
         }
         else
         {
             moveDir = GameInputManager.Instance.GetPlayerMoveDirction();
-        } 
+        }
         //尝试不使用物理系统进行碰撞判定
-        HandleMove();
+         HandleMove();
+
     }
 
     private void FixedUpdate()
@@ -100,8 +103,10 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         if (!GameManager.Instance.IsGamePlaying()) return;
         selectCounter?.Interact(this);
     }
-
-
+    /// <summary>
+    /// 服务器验证启动
+    /// </summary>
+   
     /// <summary>
     /// 控制玩家移动
     /// </summary>
@@ -110,6 +115,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         float moveDistance = moveSpeed * Time.deltaTime;
         float playerHeight = 2f;
         bool canMove =  !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadious, moveDir, moveDistance);
+        Debug.Log(canMove);
         if (!canMove)
         {
             //判断碰撞
@@ -131,8 +137,9 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
                 moveDir = moveDirX;
             }
         }
-      if (canMove) { 
+      if (canMove) {
             //移动逻辑
+           // Debug.Log(moveDir * moveSpeed * Time.deltaTime);
             transform.position += (moveDir * moveSpeed * Time.deltaTime);
         }
         //朝向的改变
