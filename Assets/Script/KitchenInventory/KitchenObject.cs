@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class KitchenObject : MonoBehaviour
+public class KitchenObject : NetworkBehaviour
 {
     [SerializeField] private FoodData_SO foodData;
 
@@ -27,6 +28,20 @@ public class KitchenObject : MonoBehaviour
         transform.localPosition = new Vector3(0,0,0);
         kitchenObject.SetKitchenObject(this);
     }
+   /// <summary>
+   /// 食物箱子生成食物
+   /// </summary>
+   public void SpawKichenObject(IKitchenObjectParent kitchenObject )
+    {
+        kitchenObjectParent = kitchenObject;
+        kitchenObject.SetKitchenObject(this);
+    }
+
+    public static void SpanNetWorkKitchenObject(IKitchenObjectParent kitchenObjectParent,FoodData_SO data)
+    {
+        KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(kitchenObjectParent,data);
+    }
+
 
     /// <summary>
     /// 通过指定数据在对应位置生成物体

@@ -5,7 +5,11 @@ using UnityEngine;
 using Unity.Netcode;
 public class Player : NetworkBehaviour,IKitchenObjectParent
 {
-    //public static Player Instance { get; private set; }
+    //网络连接的本地单例
+    public static Player LocalInstance { get; private set; }
+
+    //用于网络连接时视觉注册事件的事件
+    public static event EventHandler PlayerAnySpawn;
 
     //改变选中的柜台目标
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
@@ -36,9 +40,21 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     private LayerMask counterLayerMask;
     //控制音效生成的事件
     public event EventHandler PlayerPickUpItemEvent;
+    //网络注册单个角色拾起音效
+    public static event EventHandler PlayerPickingUP;
     private  void Awake()
     {
       //  Instance = this;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        if(IsOwner)
+        {
+            LocalInstance = this;
+        }
+        PlayerAnySpawn?.Invoke(this, EventArgs.Empty);
     }
     private void Start()
     {
@@ -231,7 +247,13 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         if(kitchenObject != null)
         {
             PlayerPickUpItemEvent?.Invoke(this, EventArgs.Empty);
+            PlayerPickingUP?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    public NetworkObject GetNetworkObject()
+    {
+        return NetworkObject;
     }
     #endregion
 }

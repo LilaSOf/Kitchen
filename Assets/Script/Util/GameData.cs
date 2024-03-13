@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public enum SlicesObjectType
@@ -77,5 +78,7 @@ public interface IKitchenObjectParent
     /// </summary>
     /// <returns></returns>
     public bool HasKitchenObject();
+
+    public NetworkObject GetNetworkObject();
 }
 

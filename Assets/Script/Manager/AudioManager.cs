@@ -16,7 +16,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         DeliveryManage.Instance.DeliverySuccess += OnDeliverySuccessEvnet;
         DeliveryManage.Instance.DeliveryFailure += OnDeliveryFailureEvnet;
-       // Player.Instance.PlayerPickUpItemEvent += OnPlayerPickUpItemEvent;
+        Player.PlayerPickingUP += OnPlayerPickUpItemEvent;
         CuttingCounter.OnAnyCut += OnAnyCutEvent;
         BaseCounter.KitchenObjectDropEvent += OnKitchenObjectDropEvent;
         TrashCounter.TranshedEvent += OnTranshedEvent;
@@ -42,7 +42,8 @@ public class AudioManager : Singleton<AudioManager>
 
     private void OnPlayerPickUpItemEvent(object sender, System.EventArgs e)
     {
-        //PlayAudio(audioData.objectPick, Player.Instance.transform.position);
+        Player player = sender as Player;
+        PlayAudio(audioData.objectPick, player.transform.position);
     }
 
     private void OnDeliverySuccessEvnet(object sender, System.EventArgs e)

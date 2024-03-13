@@ -455,6 +455,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7701029958196415212, guid: 66b4b19024f107f479aed54efde837ba, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4119594637
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1209146406522296065, guid: 66b4b19024f107f479aed54efde837ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66b4b19024f107f479aed54efde837ba, type: 3}
@@ -488,6 +492,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d7505b5bee46734384d936f04c5cb2a, type: 2}
   - {fileID: 11400000, guid: eb7031627b4e60b4dbf1a2e6124eb730, type: 2}
   - {fileID: 11400000, guid: 71e3419a65333364b95d6d8189e6c265, type: 2}
+--- !u!114 &3621269479381579936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809304318059206915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687ef1eb3d4f674fafbeeb602015833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodData: {fileID: 11400000, guid: cb1a6ebfdb446854b88f8a0894fee9e9, type: 2}
 --- !u!1001 &8332846005474523985
 PrefabInstance:
   m_ObjectHideFlags: 0

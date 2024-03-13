@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
+
 public class BaseCounter :MonoBehaviour, IKitchenObjectParent
 {
     [Header("柜台物体数据")]
@@ -57,6 +59,11 @@ public class BaseCounter :MonoBehaviour, IKitchenObjectParent
         if(kitchenObject != null) {
             KitchenObjectDropEvent?.Invoke(this,EventArgs.Empty);
         }
+    }
+
+    public NetworkObject GetNetworkObject()
+    {
+        return null;
     }
     #endregion
 }

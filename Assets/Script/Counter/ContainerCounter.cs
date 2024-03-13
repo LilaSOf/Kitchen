@@ -12,13 +12,14 @@ public class ContainerCounter : BaseCounter
        if(!player.HasKitchenObject())
         {
             //传输物品到玩家身上
-           KitchenObject kit =  Instantiate(kitchenObject, player.GetKitchenObjectFollowTransform());
+            KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(player, foodData);
+           //KitchenObject kit =  Instantiate(kitchenObject, player.GetKitchenObjectFollowTransform());
             animator.SetTrigger("OpenClose");
-           kit.SetKitchenCounter(player);
+           //kit.SetKitchenCounter(player);
         }
         else
         {
-            Debug.Log("已有物体");
+            //Debug.Log("已有物体");
         }
     }
 }
