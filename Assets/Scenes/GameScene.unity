@@ -357,6 +357,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1087642311
+      objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
       value: ClearCounter Variant (15)
@@ -928,6 +932,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 581968443
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -1695,6 +1703,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6920874363600355692, guid: a06884c7a3053ec4ea05dc68df80d574, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2461411308
+      objectReference: {fileID: 0}
     - target: {fileID: 7126414334067429118, guid: a06884c7a3053ec4ea05dc68df80d574, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Meat
@@ -1802,6 +1814,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2967591893
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -2477,6 +2493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatesCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 8269267940195135738, guid: 0dfe96719f4d4894dbbe769691947782, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4069867495
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dfe96719f4d4894dbbe769691947782, type: 3}
 --- !u!1 &359144234
@@ -2987,6 +3007,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2420407194
+      objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
       value: ClearCounter Variant (2)
@@ -3048,6 +3072,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1905226936
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -3114,6 +3142,10 @@ PrefabInstance:
     - target: {fileID: 7612034845165485080, guid: cba16bc45cc64e5458713d4dd7da375b, type: 3}
       propertyPath: m_Name
       value: StoveCounterCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732293361950618506, guid: cba16bc45cc64e5458713d4dd7da375b, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2526866061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cba16bc45cc64e5458713d4dd7da375b, type: 3}
@@ -3686,6 +3718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CuttingCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 4862173555532057816, guid: e55b7a681c8e05a48b6705565f8ca090, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2839522430
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55b7a681c8e05a48b6705565f8ca090, type: 3}
 --- !u!1 &523601845
@@ -4221,6 +4257,10 @@ PrefabInstance:
     - target: {fileID: 348780714579066562, guid: 42530b27d8486c94ead3c49e432825d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920874363600355692, guid: 42530b27d8486c94ead3c49e432825d3, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1514703087
       objectReference: {fileID: 0}
     - target: {fileID: 7126414334067429118, guid: 42530b27d8486c94ead3c49e432825d3, type: 3}
       propertyPath: m_Name
@@ -5756,6 +5796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeliveryCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 6499248018774681503, guid: 3056216d479af6e4f9d6b9614b7a7161, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3841228294
+      objectReference: {fileID: 0}
     - target: {fileID: 6848930209068953965, guid: 3056216d479af6e4f9d6b9614b7a7161, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.5
@@ -5972,6 +6016,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3017265004
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -6260,6 +6308,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2875664676
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -6652,6 +6704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6920874363600355692, guid: 01ff452d471c5584584bc1e098c4a370, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1136677973
+      objectReference: {fileID: 0}
     - target: {fileID: 7126414334067429118, guid: 01ff452d471c5584584bc1e098c4a370, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Bread
@@ -6945,6 +7001,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1560105063
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -7264,6 +7324,10 @@ PrefabInstance:
     - target: {fileID: 348780714579066562, guid: d9b562e48db4e9543b0bacff6e1b48b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920874363600355692, guid: d9b562e48db4e9543b0bacff6e1b48b1, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2998143286
       objectReference: {fileID: 0}
     - target: {fileID: 7126414334067429118, guid: d9b562e48db4e9543b0bacff6e1b48b1, type: 3}
       propertyPath: m_Name
@@ -8563,6 +8627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 998198435
+      objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
       value: ClearCounter Variant (9)
@@ -9122,6 +9190,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1397102864
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -9684,6 +9756,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3685588468
+      objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
       value: ClearCounter Variant (5)
@@ -9840,6 +9916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1547106681}
   - component: {fileID: 1547106682}
+  - component: {fileID: 1547106683}
   m_Layer: 0
   m_Name: NetWorkMulti
   m_TagString: Untagged
@@ -9874,6 +9951,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0145c247b87d8494e82941ae6a05011f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiData: {fileID: 11400000, guid: 6d7b036f59518f944a0506699cab3968, type: 2}
+  food: {fileID: 0}
+--- !u!114 &1547106683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547106680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 96701333
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!4 &1561803839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8346756857237987885, guid: 20cd7fba3259cc346ac7b6f8bf239ba9, type: 3}
@@ -10013,6 +10112,10 @@ PrefabInstance:
     - target: {fileID: 3917838551703516805, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: foodData
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3078152168
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -10558,6 +10661,10 @@ PrefabInstance:
     - target: {fileID: 4725427827470484298, guid: e55b7a681c8e05a48b6705565f8ca090, type: 3}
       propertyPath: m_Name
       value: CuttingCounter (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862173555532057816, guid: e55b7a681c8e05a48b6705565f8ca090, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2787752967
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55b7a681c8e05a48b6705565f8ca090, type: 3}
@@ -12346,6 +12453,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6920874363600355692, guid: b4efc16e61d1cbf46a5a8de460f9aecf, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2008052735
+      objectReference: {fileID: 0}
     - target: {fileID: 7126414334067429118, guid: b4efc16e61d1cbf46a5a8de460f9aecf, type: 3}
       propertyPath: m_Name
       value: ContainerCounter_Cabbage
@@ -12402,6 +12513,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2213336004
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -12987,6 +13102,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 1659962964700421507, guid: 20cd7fba3259cc346ac7b6f8bf239ba9, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2802939822
+      objectReference: {fileID: 0}
     - target: {fileID: 8346756857237987885, guid: 20cd7fba3259cc346ac7b6f8bf239ba9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -13403,6 +13522,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 923992623
+      objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
       value: ClearCounter Variant (14)
@@ -13464,6 +13587,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2949789300
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -13597,6 +13724,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 791799597
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -13789,6 +13920,10 @@ PrefabInstance:
     - target: {fileID: 638658649501671794, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782224616641732316, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 389425125
       objectReference: {fileID: 0}
     - target: {fileID: 7993320386092437838, guid: f2b85679c3c66e04abb8c9d34010ba13, type: 3}
       propertyPath: m_Name
@@ -14410,6 +14545,10 @@ PrefabInstance:
     - target: {fileID: -5694165680117615981, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2187681849
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483737351859914808, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2222446230
       objectReference: {fileID: 0}
     - target: {fileID: 7403534426358394136, guid: 23478439da725d24b8d849030c3f5c98, type: 3}
       propertyPath: m_RootOrder

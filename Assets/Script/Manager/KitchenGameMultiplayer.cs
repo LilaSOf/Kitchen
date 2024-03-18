@@ -7,35 +7,67 @@ public class KitchenGameMultiplayer : NetworkBehaviour
     public static KitchenGameMultiplayer Instance { get; private set; }
 
     [SerializeField] private KitchenObjectMultiData multiData;
+
+    [SerializeField] private FoodData_SO food;
+
     // Start is called before the first frame update
     private void Awake()
     {
         Instance = this;
     }
 
-   public void SpawnKichenObjectInContainer(IKitchenObjectParent kitchenObject,FoodData_SO kichenData)
+
+    #region 销毁网络对象
+    public void DestoryKitchenNetObject(IKitchenObjectParent kitchenObject)
     {
-        SpawnKichenObjectInContainerServerRPC(GetIndexForData(kichenData), kitchenObject.GetNetworkObject());
+        DestoryNetObjectServerRpc(kitchenObject.GetNetworkObject());
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void DestoryNetObjectServerRpc(NetworkObjectReference networkObjectReference)
+    {
+        networkObjectReference.TryGet(out NetworkObject netObject);
+        IKitchenObjectParent kitchenObject = netObject.GetComponent<IKitchenObjectParent>();
+
+        kitchenObject.GetKitchenObject().DestoryNetObject(kitchenObject);
+    }
+    [ClientRpc]
+    public void ClearNetObjectParentClientRpc(NetworkObjectReference networkObjectReference)
+    {
+        networkObjectReference.TryGet(out NetworkObject netObject);
+        IKitchenObjectParent kitchenObject = netObject.GetComponent<IKitchenObjectParent>();
+
+        kitchenObject.GetKitchenObject().ClearNetObjectParent(kitchenObject);
+    }
+    #endregion
+
+
+    #region 生成网络对象
+    /// <summary>
+    /// 在食物箱子中生成网络厨房对象
+    /// </summary>
+    /// <param name="kitchenObject">对象的父物体</param>
+    /// <param name="kichenData">物体数据</param>
+    public void SpawnKichenObjectInContainer(IKitchenObjectParent kitchenObject,FoodData_SO kichenData)
+    {
+        // Debug.Log(kitchenObject.GetNetworkObject().ToString() + GetIndexForData(kichenData));
+         SpawnKichenObjectInContainerServerRpc(GetIndexForData(kichenData), kitchenObject.GetNetworkObject());
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnKichenObjectInContainerServerRPC(int kitchenObjectIndex,NetworkObjectReference parentObjectNetReference)
+    private void SpawnKichenObjectInContainerServerRpc(int kitchenObjectIndex,NetworkObjectReference parentObjectNetReference)
     {
-
-        FoodData_SO kichenData = GetDataForIndex(kitchenObjectIndex);
         ///通过传入的NetworkObjectReference获取接口
         parentObjectNetReference.TryGet(out NetworkObject networkObject);
+        FoodData_SO kichenData = GetDataForIndex(kitchenObjectIndex);
         IKitchenObjectParent kitchenObject = networkObject.GetComponent<IKitchenObjectParent>();
-
         Transform kichenObjecttrans = Instantiate(kichenData.prefab, kitchenObject.GetKitchenObjectFollowTransform()).transform;
-        kichenObjecttrans.localPosition = Vector3.zero;
+
         //网络物体生成
         kichenObjecttrans.GetComponent<NetworkObject>().Spawn(true);
-
+        //设定父对象
         kichenObjecttrans.GetComponent<KitchenObject>().SpawKichenObject(kitchenObject);
     }
-
-
+    #endregion
     /// <summary>
     /// 通过数据获得序号
     /// </summary>

@@ -13,11 +13,13 @@ public class ClearCounter : BaseCounter
     {
        if(kitchenObject != null)//桌子有东西
         {
-            if(player.HasKitchenObject())
+            Debug.Log("桌子上有东西");
+            if (player.HasKitchenObject())
             {
                 //判断玩家身上有没有盘子
                 if (player.GetKitchenObject().TryGetPlate(out PlatesKitchenObject platesKitchenObject))
                 {
+                    Debug.Log("玩家身上有盘子");
                     //传输物体到盘子上
                     if (platesKitchenObject.TryAddIngredient(GetKitchenObject().GetFoodData_SO()))
                     {
@@ -28,10 +30,12 @@ public class ClearCounter : BaseCounter
                 {
                     if(GetKitchenObject().TryGetPlate(out PlatesKitchenObject platesKitchenObject1))
                     {
+                        Debug.Log("桌子上有盘子");
                         if(platesKitchenObject1.TryAddIngredient(player.GetKitchenObject().GetFoodData_SO()))
                         {
                           player.GetKitchenObject().DestoryMySelf(player);
                         }
+                        //player.GetKitchenObject().DestoryMySelf(player);
                     }
                 }
             }

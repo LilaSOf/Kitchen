@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Unity.Netcode;
 
-public class BaseCounter :MonoBehaviour, IKitchenObjectParent
+public class BaseCounter :NetworkBehaviour, IKitchenObjectParent
 {
     [Header("柜台物体数据")]
     [SerializeField] protected KitchenObject kitchenObject;
@@ -63,7 +63,7 @@ public class BaseCounter :MonoBehaviour, IKitchenObjectParent
 
     public NetworkObject GetNetworkObject()
     {
-        return null;
+        return NetworkObject;
     }
     #endregion
 }

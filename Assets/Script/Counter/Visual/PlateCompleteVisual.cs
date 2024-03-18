@@ -7,14 +7,13 @@ public class PlateCompleteVisual : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]private PlatesKitchenObject kitchenObject;
-
     [Serializable]
     private struct GetKitchenObject
     {
         public FoodData_SO kitchenDataSO;
         public GameObject gameObject;
     }
-
+    [Header("储存数据与对应的预制体")]
     [SerializeField]private List<GetKitchenObject> kitchenObjectList = new List<GetKitchenObject>();
     void Start()
     {

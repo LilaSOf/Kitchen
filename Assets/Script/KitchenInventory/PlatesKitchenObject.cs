@@ -17,7 +17,12 @@ public class PlatesKitchenObject : KitchenObject
     {
         public FoodData_SO kitchenDataSO;
     }
-    public bool TryAddIngredient(FoodData_SO kitchenObjectSO)
+   /// <summary>
+   /// 
+   /// </summary>
+   /// <param name="kitchenObjectSO"></param>
+   /// <returns></returns>
+   public bool TryAddIngredient(FoodData_SO kitchenObjectSO)
     {
         //≈–∂œƒ‹∑Ò∑≈÷√
         if(!vildKitchenObjectSO.Contains(kitchenObjectSO))

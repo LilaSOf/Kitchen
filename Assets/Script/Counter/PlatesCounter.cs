@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
+
 public class PlatesCounter : BaseCounter
 {
     // Start is called before the first frame update
@@ -24,7 +26,30 @@ public class PlatesCounter : BaseCounter
     // Update is called once per frame
     void Update()
     {
-        if(initPlateTime < initPlateMaxTime)
+        if(!IsServer) return;
+        PlateSpawnServerRpc();
+    }
+    public override void Interact(Player player)
+    {
+        if(!player.HasKitchenObject())
+        {
+            if(platesNum > 0)
+            {
+                KitchenObject.SpanNetWorkKitchenObject(player, kitchenObjSO);
+                PlateInteractServerRpc();
+                platesNum--;
+            }
+        }
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void PlateSpawnServerRpc()
+    {
+        PlateSpawnClientRpc();
+    }
+    [ClientRpc]
+    private void PlateSpawnClientRpc()
+    {
+        if (initPlateTime < initPlateMaxTime)
         {
             initPlateTime += Time.deltaTime;
         }
@@ -35,18 +60,16 @@ public class PlatesCounter : BaseCounter
             platesNum++;
         }
     }
-    public override void Interact(Player player)
+
+    [ServerRpc(RequireOwnership =false)]
+    private void PlateInteractServerRpc()
     {
-        if(!player.HasKitchenObject())
-        {
-            if(platesNum > 0)
-            {
-                KitchenObject kitchenObject = new KitchenObject();
-                kitchenObject.SpawnKitchenObject(kitchenObjSO, player);
-                OnPlateRemove?.Invoke(this,EventArgs.Empty);
-                platesNum--;
-            }
-          
-        }
+        PlateInteractClientRpc();
+    }
+
+    [ClientRpc]
+    private void PlateInteractClientRpc()
+    {
+        OnPlateRemove?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10564a5d730527b479b38fd82eb0fb54, type: 3}
   m_Name: KitchenObjectMultiData
   m_EditorClassIdentifier: 
-  kitchenObjectList: []
+  kitchenObjectList:
+  - {fileID: 11400000, guid: d044133662542d041ac1ff7e5546cbf3, type: 2}
+  - {fileID: 11400000, guid: e9035693f8756924c8310e5cc907c7cf, type: 2}
+  - {fileID: 11400000, guid: 7854efcdbb7a27c43a65003722b2995e, type: 2}
+  - {fileID: 11400000, guid: 68b53e15d5047434bb2d391a3ba944c1, type: 2}
+  - {fileID: 11400000, guid: 6d7505b5bee46734384d936f04c5cb2a, type: 2}
+  - {fileID: 11400000, guid: 6103de88d315e104f9832330829feaa8, type: 2}
+  - {fileID: 11400000, guid: eb7031627b4e60b4dbf1a2e6124eb730, type: 2}
+  - {fileID: 11400000, guid: ed4ea6b4cf0ca1c4bb5b3e504b2fbd98, type: 2}
+  - {fileID: 11400000, guid: cb1a6ebfdb446854b88f8a0894fee9e9, type: 2}
+  - {fileID: 11400000, guid: e45ba602afe2feb438e3addac54d2c2a, type: 2}
+  - {fileID: 11400000, guid: 71e3419a65333364b95d6d8189e6c265, type: 2}

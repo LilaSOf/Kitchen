@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
+
 public class TrashCounter : BaseCounter
 {
     // Start is called before the first frame update
@@ -17,10 +19,13 @@ public class TrashCounter : BaseCounter
             }
             else
             {
-                Destroy(player.GetKitchenObject().gameObject);
-                player.ClearKitchenObject();
+
+                KitchenObject.TrashKitchenObject(player);
+               // player.ClearKitchenObject();
             }
             TranshedEvent?.Invoke(this, EventArgs.Empty);
         }
     }
+
+  
 }

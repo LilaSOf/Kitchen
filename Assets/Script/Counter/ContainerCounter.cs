@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ContainerCounter : BaseCounter
@@ -12,9 +13,10 @@ public class ContainerCounter : BaseCounter
        if(!player.HasKitchenObject())
         {
             //传输物品到玩家身上
-            KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(player, foodData);
-           //KitchenObject kit =  Instantiate(kitchenObject, player.GetKitchenObjectFollowTransform());
-            animator.SetTrigger("OpenClose");
+            KitchenObject.SpanNetWorkKitchenObject(player, foodData);
+            //KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(player, foodData);
+            //KitchenObject kit =  Instantiate(kitchenObject, player.GetKitchenObjectFollowTransform());
+            ContainerAnimationServerRpc();
            //kit.SetKitchenCounter(player);
         }
         else
@@ -22,4 +24,15 @@ public class ContainerCounter : BaseCounter
             //Debug.Log("已有物体");
         }
     }
+    [ServerRpc(RequireOwnership =false)]
+    private void ContainerAnimationServerRpc()
+    {
+        ContainerAnimationClientRpc();
+    }
+    [ClientRpc]
+    private void ContainerAnimationClientRpc()
+    {
+        animator.SetTrigger("OpenClose");
+    }
 }
+

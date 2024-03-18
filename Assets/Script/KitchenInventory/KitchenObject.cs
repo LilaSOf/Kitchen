@@ -12,6 +12,12 @@ public class KitchenObject : NetworkBehaviour
     /// 获得当前物品的数据
     /// </summary>
     /// <returns></returns>
+    /// 
+    //[SerializeField]private KitchenObjectFollow follow;
+    private void Start()
+    {
+
+    }
     public FoodData_SO GetFoodData_SO()
     {
         return foodData;
@@ -23,26 +29,60 @@ public class KitchenObject : NetworkBehaviour
     /// <param name="kitchenObject">所在柜台</param>
     public void SetKitchenCounter(IKitchenObjectParent kitchenObject)
     {
-        kitchenObjectParent = kitchenObject;
-        transform.SetParent(kitchenObject.GetKitchenObjectFollowTransform());
-        transform.localPosition = new Vector3(0,0,0);
+        /*kitchenObjectParent = kitchenObject;
+      //  transform.SetParent(kitchenObject.GetKitchenObjectFollowTransform());
+        //transform.localPosition = new Vector3(0,0,0);
         kitchenObject.SetKitchenObject(this);
+        GetComponent<KitchenObjectFollow>().SetTargetTransfrom(kitchenObject.GetKitchenObjectFollowTransform());*/
+        SpawKichenObject(kitchenObject);
     }
    /// <summary>
-   /// 食物箱子生成食物
+   /// 在网络环境中发生物体生成或转移
    /// </summary>
    public void SpawKichenObject(IKitchenObjectParent kitchenObject )
     {
-        kitchenObjectParent = kitchenObject;
-        kitchenObject.SetKitchenObject(this);
+        SetNetWorkObjectServerRpc(kitchenObject.GetNetworkObject());
     }
-
-    public static void SpanNetWorkKitchenObject(IKitchenObjectParent kitchenObjectParent,FoodData_SO data)
+    #region 食物生成时在网络对象上设置其位置
+    /// <summary>
+    /// 食物箱子生成食物服务器端调用
+    /// </summary>
+    /// <param name="networkObjectReference"></param>
+    [ServerRpc(RequireOwnership = false)]
+    private void SetNetWorkObjectServerRpc(NetworkObjectReference networkObjectReference)
     {
-        KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(kitchenObjectParent,data);
+        SetNetWorkObjectClientRpc(networkObjectReference);
     }
+    /// <summary>
+    /// 食物箱子生成食物客户端逻辑
+    /// </summary>
+    /// <param name="networkObjectReference"></param>
+    [ClientRpc]
+    private void SetNetWorkObjectClientRpc(NetworkObjectReference networkObjectReference)
+    {
+        //通过网络对象映射获得对象
+        networkObjectReference.TryGet(out NetworkObject networkObject);
+        IKitchenObjectParent kitchenObject = networkObject.GetComponent<IKitchenObjectParent>();    
 
+        kitchenObjectParent = kitchenObject;
 
+        kitchenObject.SetKitchenObject(this);
+
+        //设置食物跟随对象
+        Transform followtrans = kitchenObject.GetKitchenObjectFollowTransform();
+       // Debug.Log(followtrans.gameObject.name);
+        if (followtrans != null)
+        {
+            GetComponent<KitchenObjectFollow>().SetTargetTransfrom(followtrans);
+        }
+        else
+        {
+            Debug.LogWarning("null");
+        }
+    }
+    #endregion
+
+  
     /// <summary>
     /// 通过指定数据在对应位置生成物体
     /// </summary>
@@ -115,5 +155,29 @@ public class KitchenObject : NetworkBehaviour
     {
         Destroy(kitchenObject.GetKitchenObject().gameObject);
         kitchenObject.ClearKitchenObject();
+    }
+    /// <summary>
+    /// 销毁网络对象
+    /// </summary>
+    /// <param name="kitchenObject"></param>
+    public void DestoryNetObject(IKitchenObjectParent kitchenObject)
+    {
+        Destroy(kitchenObject.GetKitchenObject().gameObject);
+    }
+    /// <summary>
+    /// 解绑网络物体
+    /// </summary>
+    /// <param name="kitchenObject"></param>
+    public void ClearNetObjectParent(IKitchenObjectParent kitchenObject)
+    {
+        kitchenObject.ClearKitchenObject();
+    }
+    public static void SpanNetWorkKitchenObject(IKitchenObjectParent kitchenObjectParent, FoodData_SO data)
+    {
+        KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(kitchenObjectParent, data);
+    }
+    public static void TrashKitchenObject(IKitchenObjectParent kitchenObject)
+    {
+        KitchenGameMultiplayer.Instance.DestoryKitchenNetObject(kitchenObject);
     }
 }

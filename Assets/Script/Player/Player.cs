@@ -12,7 +12,7 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
     public static event EventHandler PlayerAnySpawn;
 
     //改变选中的柜台目标
-    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged = delegate { };
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public BaseCounter selectedCounter;
@@ -53,8 +53,9 @@ public class Player : NetworkBehaviour,IKitchenObjectParent
         if(IsOwner)
         {
             LocalInstance = this;
+            PlayerAnySpawn?.Invoke(this, EventArgs.Empty);
         }
-        PlayerAnySpawn?.Invoke(this, EventArgs.Empty);
+
     }
     private void Start()
     {
