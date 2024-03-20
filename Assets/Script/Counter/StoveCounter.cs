@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Netcode;
+
 public class StoveCounter : BaseCounter,IHasProgress
 {
     // Start is called before the first frame update
@@ -45,7 +47,7 @@ public class StoveCounter : BaseCounter,IHasProgress
                     //传输物体到盘子上
                     if (platesKitchenObject.TryAddIngredient(GetKitchenObject().GetFoodData_SO()))
                     {
-                        Destroy(kitchenObject.gameObject);
+                        KitchenObject.TrashKitchenObject(this);
                     }
                 }
             }
@@ -62,7 +64,8 @@ public class StoveCounter : BaseCounter,IHasProgress
 
     private void Update()
     {
-        switch (state)
+        //单机时的运行状态
+        /*switch (state)
         {
             case State.Idle:
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEvnetArgs { progressNormalized = 0 });
@@ -102,9 +105,62 @@ public class StoveCounter : BaseCounter,IHasProgress
                 break;
 
         }
-        OnStateChangedEvent?.Invoke(this, state);
+        OnStateChangedEvent?.Invoke(this, state);*/
+        NetKichenObjectCookedServerRpc();
     }
 
+    [ServerRpc(RequireOwnership =false)]
+    private void NetKichenObjectCookedServerRpc()
+    {
+        NetKichenObjectCookedClientRpc();
+    }
+    [ClientRpc]
+    private void NetKichenObjectCookedClientRpc()
+    {
+        switch (state)
+        {
+            case State.Idle:
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEvnetArgs { progressNormalized = 0 });
+                break;
+            case State.Friding:
+                if (cookedTimer < cookedData.cookedOrBurned)
+                {
+                    cookedTimer += Time.deltaTime;
+                }
+                else
+                {
+                    //变更物体改变状态
+                    KitchenObject.TrashKitchenObject(this);
+                    KitchenObject.SpanNetWorkKitchenObject(this, cookedData.outputObject.GetFoodData_SO());
+                   // kitchenObject.ChangeItem(cookedData.outputObject, this);
+                    cookedData = OutPutKitchenObject();
+                    state = State.Frided;
+                    cookedTimer = 0;
+                    //更改UI显示
+                }
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEvnetArgs { progressNormalized = (float)cookedTimer / cookedData.cookedOrBurned });
+                break;
+            case State.Frided:
+                if (burnedTimer < cookedData.cookedOrBurned)
+                {
+                    burnedTimer += Time.deltaTime;
+                }
+                else
+                {
+                    state = State.Burning;
+                    KitchenObject.TrashKitchenObject(this);
+                    KitchenObject.SpanNetWorkKitchenObject(this, cookedData.outputObject.GetFoodData_SO());
+                   // kitchenObject.ChangeItem(cookedData.outputObject, this);
+                    burnedTimer = 0;
+                }
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEvnetArgs { progressNormalized = (float)burnedTimer / cookedData.cookedOrBurned });
+                break;
+            case State.Burning:
+                break;
+
+        }
+        OnStateChangedEvent?.Invoke(this, state);
+    }
 
     /// <summary>
     /// 判断该物体是否能够被烹饪

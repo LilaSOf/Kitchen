@@ -29,6 +29,7 @@ public class KitchenGameMultiplayer : NetworkBehaviour
         IKitchenObjectParent kitchenObject = netObject.GetComponent<IKitchenObjectParent>();
 
         kitchenObject.GetKitchenObject().DestoryNetObject(kitchenObject);
+        ClearNetObjectParentClientRpc(networkObjectReference);
     }
     [ClientRpc]
     public void ClearNetObjectParentClientRpc(NetworkObjectReference networkObjectReference)
@@ -65,7 +66,7 @@ public class KitchenGameMultiplayer : NetworkBehaviour
         //网络物体生成
         kichenObjecttrans.GetComponent<NetworkObject>().Spawn(true);
         //设定父对象
-        kichenObjecttrans.GetComponent<KitchenObject>().SpawKichenObject(kitchenObject);
+        kichenObjecttrans.GetComponent<KitchenObject>().SetNetKichenObject(kitchenObject);
     }
     #endregion
     /// <summary>

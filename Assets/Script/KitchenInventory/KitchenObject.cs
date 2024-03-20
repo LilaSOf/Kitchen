@@ -34,12 +34,12 @@ public class KitchenObject : NetworkBehaviour
         //transform.localPosition = new Vector3(0,0,0);
         kitchenObject.SetKitchenObject(this);
         GetComponent<KitchenObjectFollow>().SetTargetTransfrom(kitchenObject.GetKitchenObjectFollowTransform());*/
-        SpawKichenObject(kitchenObject);
+        SetNetKichenObject(kitchenObject);
     }
    /// <summary>
    /// 在网络环境中发生物体生成或转移
    /// </summary>
-   public void SpawKichenObject(IKitchenObjectParent kitchenObject )
+   public void SetNetKichenObject(IKitchenObjectParent kitchenObject )
     {
         SetNetWorkObjectServerRpc(kitchenObject.GetNetworkObject());
     }
@@ -153,8 +153,10 @@ public class KitchenObject : NetworkBehaviour
     /// <param name="kitchenObject"></param>
     public void DestoryMySelf(IKitchenObjectParent kitchenObject)
     {
-        Destroy(kitchenObject.GetKitchenObject().gameObject);
-        kitchenObject.ClearKitchenObject();
+        //单机情况下的销毁
+        //Destroy(kitchenObject.GetKitchenObject().gameObject);
+        // kitchenObject.ClearKitchenObject();
+        TrashKitchenObject(kitchenObject);
     }
     /// <summary>
     /// 销毁网络对象
@@ -172,10 +174,19 @@ public class KitchenObject : NetworkBehaviour
     {
         kitchenObject.ClearKitchenObject();
     }
+    /// <summary>
+    /// 生成网络对象
+    /// </summary>
+    /// <param name="kitchenObjectParent"></param>
+    /// <param name="data"></param>
     public static void SpanNetWorkKitchenObject(IKitchenObjectParent kitchenObjectParent, FoodData_SO data)
     {
         KitchenGameMultiplayer.Instance.SpawnKichenObjectInContainer(kitchenObjectParent, data);
     }
+    /// <summary>
+    /// 销毁网络对象
+    /// </summary>
+    /// <param name="kitchenObject"></param>
     public static void TrashKitchenObject(IKitchenObjectParent kitchenObject)
     {
         KitchenGameMultiplayer.Instance.DestoryKitchenNetObject(kitchenObject);

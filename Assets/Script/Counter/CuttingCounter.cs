@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using Unity.Netcode;
 
 public class CuttingCounter : BaseCounter,IHasProgress
 {
@@ -15,7 +16,7 @@ public class CuttingCounter : BaseCounter,IHasProgress
 
     public event EventHandler<float> cuttingVisualEvent;
     [Header("切割的状态")]
-    private int cuttingProgerss = 0;
+    [SerializeField]private int cuttingProgerss = 0;
     private bool isCutted;
 
     //音效事件
@@ -45,14 +46,16 @@ public class CuttingCounter : BaseCounter,IHasProgress
                     //传输物体到盘子上
                     if (platesKitchenObject.TryAddIngredient(GetKitchenObject().GetFoodData_SO()))
                     {
-                        Destroy(kitchenObject.gameObject);
+                       // Destroy(kitchenObject.gameObject);
+                        KitchenObject.TrashKitchenObject(this);
                     }
                 }
             }
             else if (!player.HasKitchenObject() && cuttingProgerss == 0)
             {
                 kitchenObject.SetKitchenCounter(player);
-                ClearKitchenObject();
+               // KitchenObject.TrashKitchenObject(this);
+               // ClearKitchenObject();
             }
         }
     }
@@ -63,6 +66,16 @@ public class CuttingCounter : BaseCounter,IHasProgress
     /// <param name="player"></param>
     public override void InteractAlt(Player player)
     {
+        CuttingNetObjectServerRpc();
+    }
+    [ServerRpc(RequireOwnership = false)]
+    private void CuttingNetObjectServerRpc()
+    {
+        CuttingNetObjectClientRpc();
+    }
+    [ClientRpc]
+    private void CuttingNetObjectClientRpc()
+    {
         int index = CanKitchenObjectCutting(kitchenObject);
         if (index != -1)//该物体能够被切割
         {
@@ -72,10 +85,10 @@ public class CuttingCounter : BaseCounter,IHasProgress
 
             float cuttingProgressNum = (float)cuttingProgerss / kitchenObjectSlicesData.cuttingProgressMax;
 
-            if (cuttingProgerss <kitchenObjectSlicesData.cuttingProgressMax-1)//是否达到切割次数
+            if (cuttingProgerss < kitchenObjectSlicesData.cuttingProgressMax - 1)//是否达到切割次数
             {
                 cuttingProgerss++;
-                OnProgressChanged?.Invoke(this,new IHasProgress.OnProgressChangedEvnetArgs {progressNormalized = (float)cuttingProgerss / kitchenObjectSlicesData.cuttingProgressMax });//调用视觉事件
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEvnetArgs { progressNormalized = (float)cuttingProgerss / kitchenObjectSlicesData.cuttingProgressMax });//调用视觉事件
                 //动画事件
                 cuttingVisualEvent?.Invoke(this, (float)cuttingProgerss / kitchenObjectSlicesData.cuttingProgressMax);
 
@@ -85,11 +98,14 @@ public class CuttingCounter : BaseCounter,IHasProgress
             else
             {
                 //销毁当前物体
-                Destroy(kitchenObject.gameObject);
+                KitchenObject.TrashKitchenObject(this);
                 //生成一个被切割过的物体
-                KitchenObject cuttingObject = Instantiate(kitchenObjectSlicesData.outputObject);
-                kitchenObject = cuttingObject;
-                kitchenObject.SetKitchenCounter(this);
+                /* KitchenObject cuttingObject = Instantiate();
+                 cuttingObject.GetComponent<KitchenObjectFollow>().SetTargetTransfrom(GetKitchenObjectFollowTransform());
+                 kitchenObject = cuttingObject;
+                 kitchenObject.SetKitchenCounter(this);*/
+                KitchenObject.SpanNetWorkKitchenObject(this, kitchenObjectSlicesData.outputObject.GetFoodData_SO());
+
 
                 //结束时重置状态
                 cuttingProgerss = 0;
@@ -101,17 +117,16 @@ public class CuttingCounter : BaseCounter,IHasProgress
                 //音效事件
                 OnAnyCut?.Invoke(this, EventArgs.Empty);
             }
-           
+
         }
+
     }
-
-
-   /// <summary>
-   /// 获取当前平台上物体的切割数据(-1为不可切割)
-   /// </summary>
-   /// <param name="kitchenObject"></param>
-   /// <returns></returns>
-   private int CanKitchenObjectCutting(KitchenObject kitchenObject)
+    /// <summary>
+    /// 获取当前平台上物体的切割数据(-1为不可切割)
+    /// </summary>
+    /// <param name="kitchenObject"></param>
+    /// <returns></returns>
+    private int CanKitchenObjectCutting(KitchenObject kitchenObject)
     {
         int index = 0;
         if(kitchenObject == null)
